@@ -1,32 +1,22 @@
 import mongoose from "mongoose";
 
-const bookSchema = new mongoose.Schema(
-  {
-    title: {
-      type: String,
-      required: true,
-    },
-    author: {
-      type: String,
-      required: true,
-    },
-    genre: {
-      type: String,
-      required: true,
-    },
-    description: {
-      type: String,
-    },
-    User: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
-    },
+const userSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
   },
-  {
-    timestamps: true,
-  }
-);
+  email: {
+    type: String,
+    unique: true,
+    required: true,
+  },
+  password: {
+    type: String,
+  },
+  phoneNumber: {
+    type: Number,
+  },
+});
 
-const Book = mongoose.model("Book", bookSchema);
-export default Book;
+const User = mongoose.model("User", userSchema);
+export default User
