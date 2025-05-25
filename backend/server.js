@@ -4,6 +4,8 @@ import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 
 import userRoutes from "./routes/userRoutes.js";
+import bookRoutes from "./routes/bookRoutes.js";
+import reviewRoutes from "./routes/reviewRoutes.js";
 
 dotenv.config();
 const app = express();
@@ -13,6 +15,8 @@ app.use(cors());
 connectDB();
 
 app.use("/users", userRoutes);
+app.use("/books", bookRoutes);
+app.use("/reviews",reviewRoutes);
 
 const PORT = process.env.PORT || 5000;
 
