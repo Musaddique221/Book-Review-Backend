@@ -23,7 +23,7 @@ const createBook = async (req, res) => {
 
 const getAllBooks = async (req, res) => {
   try {
-    const books = await Book.find({});
+    const books = await Book.find({}).sort({ createdAt: -1 });
     res.status(201).json({ message: "All books are fetched", books });
   } catch (err) {
     res.status(500).json({ message: err.message });

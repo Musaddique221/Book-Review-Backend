@@ -25,6 +25,7 @@ const getReview = async (req, res) => {
 };
 
 const createReview = async (req, res) => {
+  console.log(req.body, "28")
   try {
     const { rating, comment } = req.body;
     const bookId = req.params.id;
@@ -59,13 +60,15 @@ const updateReview = async (req, res) => {
   try {
     const reviewId = req.params.id;
 
+    console.log(req.body, "63")
+
     const review = await Review.findById(reviewId);
     if (!review) {
       return res.status(404).json({ message: "Review not found" });
     }
 
     review.rating = req.body.rating || review.rating;
-    review.comment = req.body.rating || review.rating;
+    review.comment = req.body.comment || review.comment;
 
     await review.save();
     res.status(200).json({ message: "Review updated", review });
@@ -76,7 +79,8 @@ const updateReview = async (req, res) => {
 
 const deleteReview = async (req, res) => {
   try {
-    const { reviewId } = req.params;
+    const  reviewId  = req.params.id;
+    console.log(req.params, "83")
 
     const review = await Review.findById(reviewId);
     if (!review) return res.status(404).json({ message: "Review not found" });

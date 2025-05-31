@@ -10,8 +10,10 @@ import {
   deleteReview,
 } from "../controllers/reviewController.js";
 
-router.post("/:id", protect, createReview);
+router.post("/:id/reviews", protect, createReview);
+router.get("/:id/reviews", getReview);
+
 router.put("/:id", protect, updateReview);
 router.delete("/:id", protect, deleteReview);
-router.get("/:id", protect, getReview);
+
 export default router;
